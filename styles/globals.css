@@ -1,6 +1,12 @@
 :root {
   --main-text-color: white;
   --main-theme-color: black;
+
+  --h1-size: 5vw;
+  --max-h1-size: 96px;
+
+  --h4-size: 1.17vw;
+  --max-h4-size: 23px;
 }
 
 * {
@@ -17,10 +23,27 @@ body {
 
 body {
   color: var(--main-text-color);
-  background: var(--main-theme-color)
+  background: var(--main-theme-color);
+
+  font-size: var(--h4-size);
+  max-font-size: var(--max-h4-size);
 }
 
 a {
   color: inherit;
   text-decoration: none;
+}
+li{
+  all: unset;
+}
+
+h1{
+  font-family: Montserrat;
+  font-size: var(--h1-size);
+  font-max-size: var(--max-h1-size);
+}
+
+h4{
+  font-size: var(--h4-size);
+  font-max-size: var(--max-h4-size);
 }
