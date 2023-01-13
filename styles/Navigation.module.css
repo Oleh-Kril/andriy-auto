@@ -5,16 +5,23 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: absolute;
 
     padding: 0 12vw;
+    margin-top: 2vh;
 }
 
+/*logo*/
 .logo_container{
-    background: red;
     height: 100%;
     width: 10%;
 }
 
+.logo_icon{
+    max-width: 100%;
+}
+
+/*Navigation options*/
 .nav_options{
     height: 100%;
     width: 70%;
@@ -27,8 +34,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-
-    border: white 1px solid;
 }
 
 .nav_option > a{
@@ -39,10 +44,6 @@
     padding: 0.2vw;
 }
 
-.nav_option > a:active{
-    color: var(--main-theme-color);
-    background: var(--main-text-color);
-}
 .nav_option > a:hover{
     transition: background-color,color 0.25s linear;
 
