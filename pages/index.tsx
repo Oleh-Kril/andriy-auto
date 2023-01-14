@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import styles from '../styles/HomePage/Home.module.css'
 import BrandBlock from "../components/HomePage/BrandBlock"
 
 export default function Home() {

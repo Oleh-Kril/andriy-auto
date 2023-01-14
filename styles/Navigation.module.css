@@ -48,6 +48,6 @@
     transition: background-color,color 0.25s linear;
 
     color: var(--main-theme-color);
-    background: var(--main-text-color);
+    background: var(--main-reverse-color);
 }
 

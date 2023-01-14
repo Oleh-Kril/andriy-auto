@@ -1,5 +1,5 @@
 :root {
-  --main-text-color: white;
+  --main-reverse-color: white;
   --main-theme-color: black;
   --highlight_color: #E56915;
 
@@ -25,7 +25,7 @@ body {
 }
 
 body {
-  color: var(--main-text-color);
+  color: var(--main-reverse-color);
   background: var(--main-theme-color);
 
   font-size: var(--h4-size);
