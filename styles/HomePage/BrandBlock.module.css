@@ -1,0 +1,83 @@
+.section{
+    width: 100vw;
+    --section-height: 50vh;
+
+    height: var(--section-height);
+    position: relative;
+}
+
+/* Door */
+.door{
+    position: absolute;
+    display: grid;
+    width: 100%;
+
+    pointer-events: none;
+    --animation-duration: 3s;
+}
+
+.door_element{
+    position: relative;
+    background: var(--main-theme-color);
+    height: calc(var(--section-height) / 2);
+}
+
+.upper_door{
+    display: flex;
+    align-items: flex-end;
+    top: -10%;
+}
+
+.bottom_door{
+    top: 10%;
+}
+
+.visible{}
+
+.upper_door.visible{
+    animation: move_upper_door var(--animation-duration);
+    animation-fill-mode: forwards;
+}
+.bottom_door.visible{
+    animation: move_bottom_door var(--animation-duration);
+    animation-fill-mode: forwards;
+}
+            /*door teeth*/
+.door img{
+    width: 100%;
+    position: relative;
+}
+
+.bottom_door > img{
+    left: -2.1355vw;
+    top: -15%;
+
+    rotate: 180deg;
+}
+
+.upper_door > img{
+    top: 15%;
+}
+            /*door open animation*/
+@keyframes move_upper_door {
+    100%{
+        top: -100%
+    }
+}
+@keyframes move_bottom_door {
+    100%{
+        top: 100%
+    }
+}
+
+/*Container content*/
+.content{
+    background: var(--main-reverse-color);
+    height: 100%;
+
+    color: var(--main-theme-color);
+}
+
+.brands_container{
+
+}
