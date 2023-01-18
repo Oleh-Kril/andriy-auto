@@ -18,6 +18,7 @@
 
 .door_element{
     position: relative;
+    z-index: 100;
     background: var(--main-theme-color);
     height: calc(var(--section-height) / 2);
 }
@@ -46,17 +47,19 @@
 .door img{
     width: 100%;
     position: relative;
+
+    --teeth-offset: 12%;
 }
 
 .bottom_door > img{
     left: -2.1355vw;
-    top: -15%;
+    top: calc(var(--teeth-offset) * -1);
 
     rotate: 180deg;
 }
 
 .upper_door > img{
-    top: 15%;
+    top: var(--teeth-offset);
 }
             /*door open animation*/
 @keyframes move_upper_door {
@@ -76,8 +79,61 @@
     height: 100%;
 
     color: var(--main-theme-color);
+    padding: 9vh 0;
+}
+
+.title_box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 11vh;
+}
+
+.title_text{
+    width: 25%;
+    text-align: center;
+
+    border-bottom: 1.2vh var(--main-theme-color) solid;
+    padding-bottom: 2vh;
 }
 
 .brands_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5vw;
+}
 
+.brand_option{
+    position: relative;
+    top: 0;
+
+
+    background: var(--middle-color);
+    --size: 5.6vw;
+
+    width:  var(--size);
+    height: var(--size);
+
+    padding: .5vw;
+    border-radius: 25%;
+    border: 0.2vw transparent solid;
+
+    transition: top 1s, border 1s;
+}
+
+.brand_option.active{
+    top: calc(var(--size)/-2);
+    border: 0.2vw var(--main-theme-color) solid;
+}
+
+.brand_option button {
+    display: block;
+}
+
+.brand_option img{
+    object-fit: cover;
+
+    width: 100%;
+    height: 100%;
 }

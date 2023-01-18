@@ -1,10 +1,14 @@
 import styles from "../../styles/HomePage/BrandBlock.module.css"
-import {useEffect, useRef} from "react"
+import {useEffect, useRef, useState} from "react"
+import BrandOption from "./BrandOption"
 
 function BrandBlock() {
+
     const doorRef = useRef(null)
     const upperDoorRef = useRef(null)
     const bottomDoorRef = useRef(null)
+
+    let [brandOptions, setBrandOption] = useState(Array<string>)
 
     useEffect(() => {
         const observer = new IntersectionObserver(([entry]) => {
@@ -23,8 +27,10 @@ function BrandBlock() {
 
         // @ts-ignore
         observer.observe(doorRef.current);
-    }, []);
-
+    }, [])
+    useEffect(() => {
+        console.log(brandOptions)
+    }, [brandOptions])
     return (
         <section className={styles.section}>
             <div className={styles.door}>
@@ -38,32 +44,60 @@ function BrandBlock() {
             </div>
 
             <div className={styles.content}>
-                <h2>Бренд</h2>
+                <h2 className={styles.title_box}>
+                    <p className={styles.title_text}>Бренд</p>
+                </h2>
 
                 <ul className={styles.brands_container}>
-                    <li>
-                        <img src="jeep-brand.png" alt="jeep brand"/>
-                    </li>
+                    <BrandOption
+                        image="brandLogos/jeep-brand.png"
+                        alt="jeep brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/mitsubishi-brand.png"
+                        alt="mitsubishi brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/bmw-brand.png"
+                        alt="bmw brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/fiat-brand.png"
+                        alt="fiat brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/maserati-brand.png"
+                        alt="maserati brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/reno-brand.png"
+                        alt="reno brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/nissan-brand.png"
+                        alt="nissan brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/ford-brand.png"
+                        alt="ford brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
 
-                    <li>
-                        <img src="jeep-brand.png" alt="jeep brand"/>
-                    </li>
-
-                    <li>
-                        <img src="jeep-brand.png" alt="jeep brand"/>
-                    </li>
-
-                    <li>
-                        <img src="jeep-brand.png" alt="jeep brand"/>
-                    </li>
-
-                    <li>
-                        <img src="jeep-brand.png" alt="jeep brand"/>
-                    </li>
-
-                    <li>
-                        <img src="jeep-brand.png" alt="jeep brand"/>
-                    </li>
                 </ul>
             </div>
         </section>
