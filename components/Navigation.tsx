@@ -1,4 +1,4 @@
-import styles from '../styles/Navigation.module.css'
+import styles from '../styles/Navigation.module.scss'
 import Link from "next/link"
 import * as ROUTES from "../ROUTES"
 
@@ -8,7 +8,7 @@ function Navigation(){
             <div className={styles.logo_container}>
                 <Link href={ROUTES.Home}>
                     <img className={styles.logo_icon} src="logo.svg" alt="logo"/>
-                    <p>andriy <span className="color_text">auto.</span></p>
+                    <p>andriy <span className="text--color">auto.</span></p>
                  </Link>
             </div>
 

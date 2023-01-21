@@ -1,4 +1,4 @@
-import styles from "../../styles/HomePage/BrandBlock.module.css"
+import styles from "../../styles/HomePage/BrandBlock.module.scss"
 
 type optionProps  = {
     image: string;

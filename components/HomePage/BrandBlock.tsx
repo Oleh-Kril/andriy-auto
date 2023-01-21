@@ -1,4 +1,4 @@
-import styles from "../../styles/HomePage/BrandBlock.module.css"
+import styles from "../../styles/HomePage/BrandBlock.module.scss"
 import {useEffect, useRef, useState} from "react"
 import BrandOption from "./BrandOption"
 
@@ -34,10 +34,10 @@ function BrandBlock() {
     return (
         <section className={styles.section}>
             <div className={styles.door}>
-                <div ref={upperDoorRef} className={`${styles.upper_door} ${styles.door_element}`}>
+                <div ref={upperDoorRef} className={`${styles.upper_door}`}>
                     <img src="door-grid.svg" alt="|-| |-| |-| |-| |-| |-| |-| |-| |-| |-| |-| |-| "/>
                 </div>
-                <div ref={bottomDoorRef} className={`${styles.bottom_door} ${styles.door_element}`}>
+                <div ref={bottomDoorRef} className={`${styles.bottom_door}`}>
                     <img ref={doorRef} className={styles.door_teeth} src="door-grid.svg"
                          alt="|-| |-| |-| |-| |-| |-| |-| |-| |-| |-| |-| |-| "/>
                 </div>

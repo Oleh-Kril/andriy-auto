@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import styles from '../styles/HomePage/Home.module.css'
+import styles from '../styles/HomePage/Home.module.scss'
 import BrandBlock from "../components/HomePage/BrandBlock"
 
 export default function Home() {
@@ -14,7 +14,7 @@ export default function Home() {
             </Head>
             <main>
                 <section className={styles.section}>
-                    <h1 id={styles.title}>ПРИВЕЗЕМО АВТО МРІЇ</h1>
+                    <h1 className={styles.title}>ПРИВЕЗЕМО АВТО МРІЇ</h1>
                 </section>
                 <BrandBlock/>
             </main>
