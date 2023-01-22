@@ -8,7 +8,7 @@ function Navigation(){
             <div className={styles.logo_container}>
                 <Link href={ROUTES.Home}>
                     <img className={styles.logo_icon} src="logo.svg" alt="logo"/>
-                    <p>andriy <span className="text--color">auto.</span></p>
+                    <p>andriy <span className="u-colourful-text">auto.</span></p>
                  </Link>
             </div>
 

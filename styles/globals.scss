@@ -1,4 +1,5 @@
 @import "variables";
+@import "utilities";
 
 * {
   box-sizing: border-box;
@@ -6,17 +7,20 @@
   margin: 0;
 }
 
-:root{
-  font-size: 62.5%
-}
-
-html,
-body {
+%page{
   max-width: 100vw;
   overflow-x: hidden;
 }
 
+html {
+  @extend %page;
+
+  font-size: 62.5%;
+}
+
 body {
+  @extend %page;
+
   color: $main-reverse-color;
   background: $main-theme-color;
 
@@ -54,10 +58,4 @@ h2{
 h4{
   font-size: $main-font-size;
   font-max-size: $main-font-max-size;
-}
-
-
-/*Custom styles*/
-.text--color{
-  color: $highlight_color;
 }
