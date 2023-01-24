@@ -1,0 +1,64 @@
+@import "variables";
+@import "mixins";
+
+.section{
+    width: 100vw;
+    height: 6vh;
+
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+
+    padding: 0 12vw;
+    margin-top: 3vh;
+
+    @include respond(tab-port) {
+        padding: 0 4vw;
+    }
+    /*logo*/
+    .logo_container{
+        height: 100%;
+        width: 10%;
+        white-space: nowrap;
+
+        @include respond(tab-port) {
+            display: none;
+        }
+
+        .logo_icon{
+            max-height: 100%;
+        }
+    }
+
+
+    /*Navigation options*/
+    .nav_options{
+        height: 100%;
+        width: 70%;
+
+        display: flex;
+
+        @include respond(tab-port) {
+            width: 100%;
+        }
+
+        .nav_option{
+            @include flex-center;
+            flex-basis: 100%;
+
+            a{
+                text-align: center;
+
+                max-width: 100%;
+                padding: 0.2vw;
+
+                &:hover{
+                    transition: background-color,color 0.25s linear;
+
+                    color: $main-theme-color;
+                    background: $main-reverse-color;
+                }
+            }
+        }
+    }
+}

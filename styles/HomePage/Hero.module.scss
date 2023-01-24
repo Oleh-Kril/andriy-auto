@@ -1,0 +1,43 @@
+@import "../variables";
+
+.section{
+    width: 100vw;
+    height: 90vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .title{
+        width: 70rem;
+        text-align: center;
+        --bg-size: 400%;
+
+        background: linear-gradient(
+                        90deg,
+                        $highlight_color,
+                        #FF0000,
+                        $highlight_color
+        ) 0 0 / var(--bg-size) 100%;
+
+        color: transparent;
+        -webkit-background-clip: text;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+        .title {
+            animation: move-bg  10s linear infinite;
+        }
+    }
+}
+
+//Animation of bg text gradient
+@keyframes move-bg {
+    to {
+        background-position: var(--bg-size) 0;
+    }
+}
+
+
+
+

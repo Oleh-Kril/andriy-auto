@@ -1,0 +1,186 @@
+@import "../variables";
+@import "../mixins";
+
+.section{
+    $section-height: 50vh;
+    $teeth-height: 60%;
+
+    width: 100vw;
+    height: $section-height;
+    position: relative;
+
+    @include respond(tab-port){
+        height: $section-height / 1.5;
+    }
+    @include respond(phone){
+        height: $section-height * 1.2;
+    }
+
+
+    /* Container door */
+    .door{
+        $animation-duration: 3s;
+
+        position: absolute;
+        display: grid;
+        width: 100%;
+        height: 100%;
+
+        pointer-events: none;
+        user-select: none;
+
+        img{
+            width: 100%;
+            position: relative;
+
+            transform: translateY($teeth-height);
+
+            @include respond(tab-port){
+                transform: scale(2) translateY($teeth-height/2);
+            }
+        }
+
+        %door_element{
+            position: relative;
+            z-index: 100;
+            background: $main-theme-color;
+        }
+
+        .upper_door{
+            @extend %door_element;
+            display: flex;
+            align-items: flex-end;
+            top: -10%;
+
+            &.visible{
+                animation: move_upper_door $animation-duration;
+                animation-fill-mode: forwards;
+            }
+        }
+
+        .bottom_door{
+            @extend %door_element;
+            top: 10%;
+
+            &.visible{
+                animation: move_bottom_door $animation-duration;
+                animation-fill-mode: forwards;
+            }
+
+            img{
+                left: -2.1355vw;
+
+                rotate: 180deg;
+            }
+        }
+    }
+
+    /*Container content*/
+    .content{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+
+        background: $main-reverse-color;
+        height: 100%;
+
+        color: $main-theme-color;
+
+        //Tittle
+        .title_box{
+            text-align: center;
+
+            .title_text{
+                display: inline-block;
+                width: 35%;
+
+                border-bottom: 1rem $main-theme-color solid;
+                padding-bottom: 2vh;
+            }
+        }
+
+        //Brands list
+        .brands_container{
+            @include flex-center;
+
+            gap: 1.5vw;
+            overflow-x: auto;
+            height: 14vw;
+            max-width:100%;
+
+
+            @include respond(phone){
+                height: 300px;
+                overflow-x: auto;
+
+                display: grid;
+                justify-content: center;
+                align-items: center;
+
+                grid-template-columns: repeat(4, 1fr);
+
+                $space-between: 8vw;
+                gap:  clamp(4vw, $space-between, 10vw);
+                padding:  $space-between;
+            }
+
+            .brand_option{
+                $border-width: 0.4vw;
+                $brand_option_size: 5.6vw;
+
+                flex: 0 0 auto;
+                position: relative;
+
+                top: 0;
+                width:  $brand_option_size;
+                height: $brand_option_size;
+
+                background: $middle-color;
+                padding: 1vw;
+                border-radius: 25%;
+                border: $border-width transparent solid;
+
+                transition: top .7s, border .7s;
+
+                @include respond(phone){
+                    //width: clamp(80%, 90% ,100%);
+                    width: $brand_option_size* 2;
+                    height: auto;
+                }
+
+                &.active{
+                    top: $brand_option_size/-2;
+                    border: $border-width $main-theme-color solid;
+
+                    @include respond(phone){
+                        top: 0;
+                        border: $border-width $main-theme-color solid;
+                    }
+                }
+
+                img{
+                    object-fit: cover;
+
+                    width: 100%;
+                    height: 100%;
+                }
+
+                button {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+            /*door open animation*/
+@keyframes move_upper_door {
+    100%{
+        top: -100%
+    }
+}
+@keyframes move_bottom_door {
+    100%{
+        top: 100%
+    }
+}
