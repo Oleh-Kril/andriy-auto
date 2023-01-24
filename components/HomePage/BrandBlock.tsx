@@ -97,6 +97,42 @@ function BrandBlock() {
                         brandOptions={brandOptions}
                         setBrandOption={setBrandOption}
                     />
+                    <BrandOption
+                        image="brandLogos/nissan-brand.png"
+                        alt="nissan brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/ford-brand.png"
+                        alt="ford brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/nissan-brand.png"
+                        alt="nissan brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/ford-brand.png"
+                        alt="ford brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/nissan-brand.png"
+                        alt="nissan brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
+                        image="brandLogos/ford-brand.png"
+                        alt="ford brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
 
                 </ul>
             </div>

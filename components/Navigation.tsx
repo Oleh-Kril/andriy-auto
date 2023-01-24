@@ -18,7 +18,7 @@ function Navigation(){
                 </li>
 
                 <li className={styles.nav_option}>
-                    <Link href={ROUTES.OrderACar}>Авто під замовлення</Link>
+                    <Link href={ROUTES.OrderACar}>Під ключ</Link>
                 </li>
 
                 <li className={styles.nav_option}>

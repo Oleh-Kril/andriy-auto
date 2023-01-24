@@ -1,20 +1,30 @@
 @import "../variables";
+@import "../mixins";
 
 .section{
-    width: 100vw;
     $section-height: 50vh;
+    $teeth-height: 60%;
 
+    width: 100vw;
     height: $section-height;
     position: relative;
+
+    @include respond(tab-port){
+        height: $section-height / 1.5;
+    }
+    @include respond(phone){
+        height: $section-height * 1.2;
+    }
+
 
     /* Container door */
     .door{
         $animation-duration: 3s;
-        $teeth-image-offset: 12%;
 
         position: absolute;
         display: grid;
         width: 100%;
+        height: 100%;
 
         pointer-events: none;
         user-select: none;
@@ -22,13 +32,18 @@
         img{
             width: 100%;
             position: relative;
+
+            transform: translateY($teeth-height);
+
+            @include respond(tab-port){
+                transform: scale(2) translateY($teeth-height/2);
+            }
         }
 
         %door_element{
             position: relative;
             z-index: 100;
             background: $main-theme-color;
-            height: $section-height / 2;
         }
 
         .upper_door{
@@ -40,10 +55,6 @@
             &.visible{
                 animation: move_upper_door $animation-duration;
                 animation-fill-mode: forwards;
-            }
-
-            img{
-                top: $teeth-image-offset;
             }
         }
 
@@ -58,7 +69,6 @@
 
             img{
                 left: -2.1355vw;
-                top: $teeth-image-offset * -1;
 
                 rotate: 180deg;
             }
@@ -72,13 +82,14 @@
 
         color: $main-theme-color;
         padding: 9vh 0;
+        overflow: scroll;
 
         //Tittle
         .title_box{
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 11vh;
+            margin-bottom: $section-height * 0.15;
 
             &_text{
                 width: 25%;
@@ -91,10 +102,20 @@
 
         //Brands list
         .brands_container{
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            @include flex-center;
             gap: 1.5vw;
+
+            @include respond(phone){
+                display: grid;
+                justify-content: center;
+                align-items: center;
+
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+
+                $space-between: 8vw;
+                gap:  $space-between;
+                padding:  $space-between;
+            }
 
             .brand_option{
                 $size: 5.6vw;
@@ -111,9 +132,18 @@
 
                 transition: top 1s, border 1s;
 
+                @include respond(phone){
+                    width: 100%;
+                    height: auto;
+                }
+
                 &.active{
                     top: $size/-2;
                     border: 0.2vw $main-theme-color solid;
+
+                    @include respond(phone){
+                        top: 0;
+                    }
                 }
 
                 img{
