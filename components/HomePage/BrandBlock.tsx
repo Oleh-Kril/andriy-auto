@@ -45,7 +45,7 @@ function BrandBlock() {
 
             <div className={styles.content}>
                 <h2 className={styles.title_box}>
-                    <p className={styles.title_text}>Бренд</p>
+                    <span className={styles.title_text}>Бренд</span>
                 </h2>
 
                 <ul className={styles.brands_container}>
@@ -98,14 +98,8 @@ function BrandBlock() {
                         setBrandOption={setBrandOption}
                     />
                     <BrandOption
-                        image="brandLogos/nissan-brand.png"
-                        alt="nissan brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/ford-brand.png"
-                        alt="ford brand"
+                        image="brandLogos/reno-brand.png"
+                        alt="reno brand"
                         brandOptions={brandOptions}
                         setBrandOption={setBrandOption}
                     />
@@ -122,6 +116,12 @@ function BrandBlock() {
                         setBrandOption={setBrandOption}
                     />
                     <BrandOption
+                        image="brandLogos/reno-brand.png"
+                        alt="reno brand"
+                        brandOptions={brandOptions}
+                        setBrandOption={setBrandOption}
+                    />
+                    <BrandOption
                         image="brandLogos/nissan-brand.png"
                         alt="nissan brand"
                         brandOptions={brandOptions}
@@ -133,7 +133,6 @@ function BrandBlock() {
                         brandOptions={brandOptions}
                         setBrandOption={setBrandOption}
                     />
-
                 </ul>
             </div>
         </section>
