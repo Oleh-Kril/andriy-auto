@@ -42,6 +42,6 @@ export async function getStaticProps() {
             electricBrands: IdToStr(electricBrands),
             fuelBrands: IdToStr(fuelBrands),
         },
-        revalidate: 1
+        revalidate: 60*60*12 // every 12 hours
     }
 }
