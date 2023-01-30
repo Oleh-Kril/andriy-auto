@@ -89,16 +89,39 @@
         //Tittle
         .title_box{
             text-align: center;
-
-            .title_text{
-                display: inline-block;
-                width: 35%;
-
-                border-bottom: 1rem $main-theme-color solid;
-                padding-bottom: 2vh;
-            }
+            margin-top: 3vh;
         }
 
+        //Type buttons (fuel, electric)
+        .type_buttons_container{
+            margin: 0 auto;
+            display: flex;
+
+            button{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                height: 5vh;
+                width: 8.5vw;
+                padding: 1.5vh 1.5vw;
+
+                background: $middle-color;
+                img{
+                    height: 70%;
+                }
+
+                &.active{
+                    background: $main-theme-color;
+                    color: $main-reverse-color;
+
+                    img{
+                        filter: invert(100%);
+                    }
+                }
+            }
+
+        }
         //Brands list
         .brands_container{
             @include flex-center;
@@ -143,9 +166,8 @@
                 transition: top .7s, border .7s;
 
                 @include respond(phone){
-                    //width: clamp(80%, 90% ,100%);
-                    width: $brand_option_size* 2;
-                    height: auto;
+                    width: clamp(80%, 90% ,100%);
+                    height: clamp(13vw, 14vw , 15vw);
                 }
 
                 &.active{
@@ -159,7 +181,7 @@
                 }
 
                 img{
-                    object-fit: cover;
+                    object-fit: contain;
 
                     width: 100%;
                     height: 100%;

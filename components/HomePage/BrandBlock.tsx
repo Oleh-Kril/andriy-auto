@@ -1,16 +1,29 @@
 import styles from "../../styles/HomePage/BrandBlock.module.scss"
-import {useEffect, useRef, useState} from "react"
+import {Key, useEffect, useRef, useState} from "react"
+import {IFuelCar, FuelCarModel} from "../../models/FuelCar.module"
+import {IElectricCar, ElectricCarModel} from "../../models/ElectricCar.model"
 import BrandOption from "./BrandOption"
+import connectMongo from "../../DB"
 
-function BrandBlock() {
+type Props = {
+    fuelBrands: Array<IFuelCar>,
+    electricBrands: Array<IElectricCar>
+}
+type ICar = IFuelCar | IElectricCar
 
+function BrandBlock(props: Props) {
     const doorRef = useRef(null)
     const upperDoorRef = useRef(null)
     const bottomDoorRef = useRef(null)
 
-    let [brandOptions, setBrandOption] = useState(Array<string>)
+    const [brandOptions, setBrandOption] = useState(Array<ICar>)
+    const [selectedBrands, setSelectedBrands] = useState(Array<string>)
 
     useEffect(() => {
+        // default options
+        setBrandOption(props.fuelBrands)
+
+        // Observer for door animation
         const observer = new IntersectionObserver(([entry]) => {
 
             // @ts-ignore
@@ -20,17 +33,28 @@ function BrandBlock() {
                 upperDoorRef.current.classList.add(styles.visible)
                 // @ts-ignore
                 bottomDoorRef.current.classList.add(styles.visible)
-
-                console.log("added")
             }
-        });
-
+        })
         // @ts-ignore
-        observer.observe(doorRef.current);
+        observer.observe(doorRef.current)
     }, [])
     useEffect(() => {
-        console.log(brandOptions)
-    }, [brandOptions])
+        console.log(selectedBrands)
+    }, [selectedBrands])
+
+    function onTypeBtnHandler(event: any) {
+        const buttons = document.querySelector(`.${styles.type_buttons_container}`)?.children || []
+        for (let button of buttons) {
+            button.classList.toggle(styles.active)
+        }
+
+        const type = event.target.value
+
+        type === "electric"
+            ? setBrandOption(props.electricBrands)
+            : setBrandOption(props.fuelBrands)
+
+    }
     return (
         <section className={styles.section}>
             <div className={styles.door}>
@@ -47,92 +71,24 @@ function BrandBlock() {
                 <h2 className={styles.title_box}>
                     <span className={styles.title_text}>Бренд</span>
                 </h2>
-
+                <div className={styles.type_buttons_container}>
+                    <button onClick={onTypeBtnHandler} value="fuel" className={styles.active}>
+                        <img src="icons/oil-drop.svg" alt="oil-drop"/>
+                        <h3>Паливо</h3>
+                    </button>
+                    <button onClick={onTypeBtnHandler} value="electric">
+                        <img src="icons/lightning.svg" alt="lightning"/>
+                        <h3>Електро</h3>
+                    </button>
+                </div>
                 <ul className={styles.brands_container}>
-                    <BrandOption
-                        image="brandLogos/jeep-brand.png"
-                        alt="jeep brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/mitsubishi-brand.png"
-                        alt="mitsubishi brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/bmw-brand.png"
-                        alt="bmw brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/fiat-brand.png"
-                        alt="fiat brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/maserati-brand.png"
-                        alt="maserati brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/reno-brand.png"
-                        alt="reno brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/nissan-brand.png"
-                        alt="nissan brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/ford-brand.png"
-                        alt="ford brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/reno-brand.png"
-                        alt="reno brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/nissan-brand.png"
-                        alt="nissan brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/ford-brand.png"
-                        alt="ford brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/reno-brand.png"
-                        alt="reno brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/nissan-brand.png"
-                        alt="nissan brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
-                    <BrandOption
-                        image="brandLogos/ford-brand.png"
-                        alt="ford brand"
-                        brandOptions={brandOptions}
-                        setBrandOption={setBrandOption}
-                    />
+                    {brandOptions?.map((option: ICar) =>
+                        <BrandOption
+                            key={option._id as Key}
+                            brand={option.brand.toLowerCase()}
+                            brandOptions={selectedBrands}
+                            setBrandOption={setSelectedBrands}
+                        />)}
                 </ul>
             </div>
         </section>

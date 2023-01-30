@@ -1,10 +1,12 @@
 import Head from 'next/head'
 import HeroBlock from "../components/HomePage/HeroBlock"
 import BrandBlock from "../components/HomePage/BrandBlock"
+import connectMongo, {IBase} from "../DB"
+import {FuelCarModel} from "../models/FuelCar.module"
+import {ElectricCarModel} from "../models/ElectricCar.model"
 
 
-export default function Home() {
-
+export default function Home(props: any) {
     return (
         <>
             <Head>
@@ -15,8 +17,31 @@ export default function Home() {
             </Head>
             <main>
                 <HeroBlock/>
-                <BrandBlock/>
+                <BrandBlock
+                    electricBrands={props.electricBrands}
+                    fuelBrands={props.fuelBrands}/>
             </main>
         </>
     )
+}
+
+export async function getStaticProps() {
+    await connectMongo()
+    const IdToStr = (array: Array<IBase> ) =>{
+        return array.map((doc: any) => {
+            const item = doc.toObject()
+            item._id = item._id.toString()
+            return item
+        })
+    }
+    const electricBrands =  await ElectricCarModel.find({}, "brand")
+    const fuelBrands = await FuelCarModel.find({}, "brand")
+
+    return {
+        props: {
+            electricBrands: IdToStr(electricBrands),
+            fuelBrands: IdToStr(fuelBrands),
+        },
+        revalidate: 1
+    }
 }
