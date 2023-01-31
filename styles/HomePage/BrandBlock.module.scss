@@ -2,16 +2,13 @@
 @import "../mixins";
 
 .section{
-    $section-height: 50vh;
+    $section-height: 60vh;
     $teeth-height: 60%;
 
     width: 100vw;
     height: $section-height;
     position: relative;
 
-    @include respond(tab-port){
-        height: $section-height / 1.5;
-    }
     @include respond(phone){
         height: $section-height * 1.2;
     }
@@ -89,14 +86,13 @@
         //Tittle
         .title_box{
             text-align: center;
+            margin-top: 3vh;
+        }
 
-            .title_text{
-                display: inline-block;
-                width: 35%;
-
-                border-bottom: 1rem $main-theme-color solid;
-                padding-bottom: 2vh;
-            }
+        //Type buttons (fuel, electric)
+        .type_buttons_container{
+            margin: 0 auto;
+            display: flex;
         }
 
         //Brands list
@@ -105,17 +101,20 @@
 
             gap: 1.5vw;
             overflow-x: auto;
-            height: 14vw;
+            height: 25vh;
             max-width:100%;
 
+            @include respond(tab-port){
+                height: 20vh;
+            }
 
             @include respond(phone){
-                height: 300px;
+                height: clamp(40%, 50% ,60%);
                 overflow-x: auto;
 
                 display: grid;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
 
                 grid-template-columns: repeat(4, 1fr);
 
@@ -142,10 +141,23 @@
 
                 transition: top .7s, border .7s;
 
+                @include respond(tab-land){
+                    $brand_option_size: 10vh;
+
+                    height: $brand_option_size;
+                    width: $brand_option_size;
+                }
+
+                @include respond(tab-port){
+                    $brand_option_size: 7vh;
+
+                    height: $brand_option_size;
+                    width: $brand_option_size;
+                }
+
                 @include respond(phone){
-                    //width: clamp(80%, 90% ,100%);
-                    width: $brand_option_size* 2;
-                    height: auto;
+                    width: clamp(80%, 90% ,100%);
+                    height: clamp(13vw, 14vw , 15vw);
                 }
 
                 &.active{
@@ -159,7 +171,7 @@
                 }
 
                 img{
-                    object-fit: cover;
+                    object-fit: contain;
 
                     width: 100%;
                     height: 100%;

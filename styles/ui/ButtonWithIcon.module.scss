@@ -1,0 +1,44 @@
+@import "../variables";
+@import "../mixins";
+
+.button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    height: 3vw;
+    width: 11.5vw;
+    padding: 1.5vh 1.5vw;
+
+    background: $middle-color;
+
+    @include respond(tab-land) {
+        width: 13.5vw;
+    }
+
+    @include respond(tab-land) {
+        width: 18vw;
+    }
+
+    @include respond(phone) {
+        width: 22vw;
+        height: 5vw;
+    }
+
+    * {
+        pointer-events: none;
+    }
+
+    img {
+        height: 70%;
+    }
+
+    &.active {
+        background: $main-theme-color;
+        color: $main-reverse-color;
+
+        img {
+            filter: invert(100%);
+        }
+    }
+}

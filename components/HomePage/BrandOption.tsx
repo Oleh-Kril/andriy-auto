@@ -1,11 +1,9 @@
 import styles from "../../styles/HomePage/BrandBlock.module.scss"
 
 type optionProps  = {
-    image: string;
-    alt: string;
-
-    setBrandOption: Function;
-    brandOptions: Array<string>;
+    brand: string
+    setBrandOption: Function
+    brandOptions: Array<string>
 }
 
 
@@ -29,7 +27,10 @@ function BrandOption(props: optionProps){
     return(
         <>
             <li className={styles.brand_option}>
-                    <img onClick={onBrandClickHandler} src={props.image} alt={props.alt}/>
+                    <img
+                        onClick={onBrandClickHandler}
+                        src={`https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${props.brand}.png`}
+                        alt={props.brand}/>
             </li>
         </>
     )
