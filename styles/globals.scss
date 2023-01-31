@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&display=swap');
+
 @import "variables";
 @import "utilities";
 @import "mixins";
@@ -70,6 +72,10 @@ h2{
 h3 {
   font-size: 3.1rem;
   font-weight: 400;
+
+  @include respond(phone) {
+    font-size: 4.5vw;
+  }
 }
 
 body, h4{

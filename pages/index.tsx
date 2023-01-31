@@ -34,6 +34,7 @@ export async function getStaticProps() {
             return item
         })
     }
+
     const electricBrands =  await ElectricCarModel.find({}, "brand")
     const fuelBrands = await FuelCarModel.find({}, "brand")
 
@@ -42,6 +43,6 @@ export async function getStaticProps() {
             electricBrands: IdToStr(electricBrands),
             fuelBrands: IdToStr(fuelBrands),
         },
-        revalidate: 60*60*12 // every 12 hours
+        revalidate: 60 // every 12 hours
     }
 }

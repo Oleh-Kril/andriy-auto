@@ -2,16 +2,13 @@
 @import "../mixins";
 
 .section{
-    $section-height: 50vh;
+    $section-height: 60vh;
     $teeth-height: 60%;
 
     width: 100vw;
     height: $section-height;
     position: relative;
 
-    @include respond(tab-port){
-        height: $section-height / 1.5;
-    }
     @include respond(phone){
         height: $section-height * 1.2;
     }
@@ -96,49 +93,28 @@
         .type_buttons_container{
             margin: 0 auto;
             display: flex;
-
-            button{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                height: 5vh;
-                width: 8.5vw;
-                padding: 1.5vh 1.5vw;
-
-                background: $middle-color;
-                img{
-                    height: 70%;
-                }
-
-                &.active{
-                    background: $main-theme-color;
-                    color: $main-reverse-color;
-
-                    img{
-                        filter: invert(100%);
-                    }
-                }
-            }
-
         }
+
         //Brands list
         .brands_container{
             @include flex-center;
 
             gap: 1.5vw;
             overflow-x: auto;
-            height: 14vw;
+            height: 25vh;
             max-width:100%;
 
+            @include respond(tab-port){
+                height: 20vh;
+            }
 
             @include respond(phone){
-                height: 300px;
+                height: clamp(40%, 50% ,60%);
                 overflow-x: auto;
 
                 display: grid;
                 justify-content: center;
-                align-items: center;
+                align-items: flex-start;
 
                 grid-template-columns: repeat(4, 1fr);
 
@@ -164,6 +140,20 @@
                 border: $border-width transparent solid;
 
                 transition: top .7s, border .7s;
+
+                @include respond(tab-land){
+                    $brand_option_size: 10vh;
+
+                    height: $brand_option_size;
+                    width: $brand_option_size;
+                }
+
+                @include respond(tab-port){
+                    $brand_option_size: 7vh;
+
+                    height: $brand_option_size;
+                    width: $brand_option_size;
+                }
 
                 @include respond(phone){
                     width: clamp(80%, 90% ,100%);

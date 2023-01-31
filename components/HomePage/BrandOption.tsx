@@ -29,7 +29,7 @@ function BrandOption(props: optionProps){
             <li className={styles.brand_option}>
                     <img
                         onClick={onBrandClickHandler}
-                        src={`https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/original/${props.brand}.jpg`}
+                        src={`https://raw.githubusercontent.com/filippofilip95/car-logos-dataset/master/logos/optimized/${props.brand}.png`}
                         alt={props.brand}/>
             </li>
         </>

@@ -1,9 +1,11 @@
 import styles from "../../styles/HomePage/BrandBlock.module.scss"
+import btnStyles from "../../styles/ui/ButtonWithIcon.module.scss"
 import {Key, useEffect, useRef, useState} from "react"
 import {IFuelCar, FuelCarModel} from "../../models/FuelCar.module"
 import {IElectricCar, ElectricCarModel} from "../../models/ElectricCar.model"
 import BrandOption from "./BrandOption"
 import connectMongo from "../../DB"
+import ButtonWithIcon from "../ui/ButtonWithIcon";
 
 type Props = {
     fuelBrands: Array<IFuelCar>,
@@ -43,17 +45,19 @@ function BrandBlock(props: Props) {
     }, [selectedBrands])
 
     function onTypeBtnHandler(event: any) {
-        const buttons = document.querySelector(`.${styles.type_buttons_container}`)?.children || []
-        for (let button of buttons) {
-            button.classList.toggle(styles.active)
+        const btn = event.target
+
+        if(!btn.classList.contains(btnStyles.active)) {
+
+            const buttons = document.querySelector(`.${styles.type_buttons_container}`)?.children || []
+            for (let button of buttons) {
+                button.classList.toggle(btnStyles.active)
+            }
+
+            btn.value === "electric"
+                ?  setBrandOption(props.electricBrands)
+                :  setBrandOption(props.fuelBrands)
         }
-
-        const type = event.target.value
-
-        type === "electric"
-            ? setBrandOption(props.electricBrands)
-            : setBrandOption(props.fuelBrands)
-
     }
     return (
         <section className={styles.section}>
@@ -72,14 +76,11 @@ function BrandBlock(props: Props) {
                     <span className={styles.title_text}>Бренд</span>
                 </h2>
                 <div className={styles.type_buttons_container}>
-                    <button onClick={onTypeBtnHandler} value="fuel" className={styles.active}>
-                        <img src="icons/oil-drop.svg" alt="oil-drop"/>
-                        <h3>Паливо</h3>
-                    </button>
-                    <button onClick={onTypeBtnHandler} value="electric">
-                        <img src="icons/lightning.svg" alt="lightning"/>
-                        <h3>Електро</h3>
-                    </button>
+                    <ButtonWithIcon iconName="oil-drop" text="Паливо"
+                                    value="fuel"  clickHandler={onTypeBtnHandler} active={true}/>
+                    <ButtonWithIcon iconName="lightning" text="Електро"
+                                    value="electric" clickHandler={onTypeBtnHandler}/>
+
                 </div>
                 <ul className={styles.brands_container}>
                     {brandOptions?.map((option: ICar) =>
