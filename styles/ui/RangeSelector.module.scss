@@ -1,8 +1,11 @@
 @import "../variables";
+@import "../mixins";
 
 .container {
+    color: $main-theme-color;
+
     height: 20vh;
-    width: 20vw;
+    width: 30vw;
 
     display: flex;
     flex-direction: column;
@@ -13,7 +16,7 @@
         $slider-line-height: 0.5vh;
 
         position: relative;
-        width: 70%;
+        width: 60%;
 
         & > * {
             position: absolute;
@@ -22,7 +25,7 @@
         .slider__track {
             height: $slider-line-height;
 
-            background-color: $main-reverse-color;
+            background-color: $main-theme-color;
             width: 100%;
             z-index: 1;
         }
@@ -45,7 +48,7 @@
             @mixin thumb-btn {
                 position: relative;
 
-                background-color: $highlight_color;
+                background-color: $highlight-color;
                 border: none;
                 cursor: pointer;
                 pointer-events: all;
@@ -53,6 +56,15 @@
                 height: 1.3vw;
                 width: 0.8vw;
                 margin-top: $slider-line-height / 2;
+
+                @include respond(tab-port){
+                    height: 2.5vw;
+                    width: 1vw;
+                }
+                @include respond(phone){
+                    height: 4vw;
+                    width: 2vw;
+                }
             }
 
             &::-webkit-slider-thumb {
@@ -72,15 +84,21 @@
         width: 100%;
 
         display: flex;
+        align-items: center;
         justify-content: space-around;
 
         img {
-            filter: invert(1);
+            @include respond(phone){
+                height: 80%;
+            }
         }
 
         &__value {
-            width: 20%;
+            border: 1px solid $main-theme-color;
+            padding: 0.5rem;
+            width: 30%;
             text-align: center;
+
         }
     }
 }

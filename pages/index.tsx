@@ -5,6 +5,8 @@ import connectMongo, {IdToStr} from "../DB"
 import {FuelCarModel, IFuelCar} from "../models/FuelCar.module"
 import {ElectricCarModel, IElectricCar} from "../models/ElectricCar.model"
 import {getCars, getInitialFilterOptions} from "./api/filter"
+import FilterBlock from "../components/HomePage/FilterBlock";
+import CarsBlock from "../components/HomePage/CarsBlock";
 
 
 export default function Home(props: any) {
@@ -18,10 +20,18 @@ export default function Home(props: any) {
             </Head>
             <main>
                 <HeroBlock/>
+
                 <BrandBlock
                     electricBrands={props.electricBrands}
                     fuelBrands={props.fuelBrands}
-                    electricFilterOptions={props.electricFilterOptions}/>
+                    />
+
+                <FilterBlock
+                    electricDefaultOptions={props.electricFilterOptions}
+                    fuelDefaultOptions={props.fuelFilterOptions}
+                    />
+
+                <CarsBlock/>
             </main>
         </>
     )
@@ -45,6 +55,6 @@ export async function getStaticProps() {
             electricFilterOptions: electricFilterOptions,
             fuelFilterOptions: fuelFilterOptions
         },
-        revalidate: 1 // every 12 hours
+        revalidate: 60*60*12 // every 12 hours
     }
 }

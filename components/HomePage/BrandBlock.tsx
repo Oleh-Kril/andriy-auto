@@ -3,9 +3,8 @@ import {Key, useEffect, useRef, useState} from "react"
 import styles from "../../styles/HomePage/BrandBlock.module.scss"
 import btnStyles from "../../styles/ui/ButtonWithIcon.module.scss"
 
-import {IFuelCar, FuelCarModel} from "../../models/FuelCar.module"
-import {IElectricCar, ElectricCarModel} from "../../models/ElectricCar.model"
-import {FilterOptions} from "../../pages/api/filter"
+import {IFuelCar} from "../../models/FuelCar.module"
+import {IElectricCar} from "../../models/ElectricCar.model"
 
 import BrandOption from "./BrandOption"
 import ButtonWithIcon from "../ui/ButtonWithIcon"
@@ -13,8 +12,8 @@ import ButtonWithIcon from "../ui/ButtonWithIcon"
 type Props = {
     fuelBrands: Array<IFuelCar>,
     electricBrands: Array<IElectricCar>,
-    electricFilterOptions: FilterOptions
 }
+
 type ICar = IFuelCar | IElectricCar
 
 function BrandBlock(props: Props) {
@@ -26,8 +25,6 @@ function BrandBlock(props: Props) {
     const [selectedBrands, setSelectedBrands] = useState(Array<string>)
 
     useEffect(() => {
-        console.log(props.electricFilterOptions)
-
         // default options
         setBrandOption(props.fuelBrands)
 

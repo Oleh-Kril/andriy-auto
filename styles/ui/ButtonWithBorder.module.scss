@@ -1,0 +1,35 @@
+@import "../variables";
+@import "../mixins";
+
+.button {
+    position: relative;
+    text-align: center;
+    color: $main-theme-color;
+
+    padding: 0.5vw 3.5vw;
+    background: $middle-color;
+
+    &:after{
+        $shift: .8vw;
+        content: "";
+
+        position: absolute;
+        top:  $shift;
+        left:  $shift;
+
+        width: 100%;
+        height: 100%;
+
+        border: 2px solid $highlight-color;
+    }
+
+
+    * {
+        pointer-events: none;
+    }
+
+    &.active {
+        background: $main-theme-color;
+        color: $main-reverse-color;
+    }
+}

@@ -39,9 +39,9 @@ export function getInitialFilterOptions(electricCars: IElectricCar[], fuelCars: 
     const fuelCarsLastIdx = fuelCars.length - 1
 
     const GetVariationsElectric =
-        (property: string) => Array.from(electricCars.map(car => car[property as keyof IElectricCar]))
+        (property: string) => Array.from(new Set((electricCars.map(car => car[property as keyof IElectricCar]))))
     const GetVariationsFuel =
-        (property: string) => Array.from(fuelCars.map(car => car[property as keyof IFuelCar]))
+        (property: string) => Array.from(new Set(fuelCars.map(car => car[property as keyof IFuelCar])))
 
     const electricFilterOptions: FilterOptions ={
         price: {
