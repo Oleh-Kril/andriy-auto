@@ -19,10 +19,11 @@
 .section__filters{
     @extend %section;
 
-    min-height: 80vh;
-    background: $main-reverse-color;
+    min-height: 85vh;
+
+    background: linear-gradient(0deg,$main-theme-color  2%, $main-reverse-color 10%);
     color: $main-theme-color;
-    padding:0 3vw;
+    padding:0 3vw 5vh 3vw;
 
     display: grid;
     gap: 5vw;

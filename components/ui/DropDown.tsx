@@ -16,6 +16,7 @@ type Props = {
 function DropDown(props: Props){
     const main_reverse_color = styles.main_reverse_color as string
     const main_theme_color = styles.main_theme_color as string
+    const middle_color = styles.middle_color as string
     const highlight_color = styles.highlight_color as string
 
     const colourStyles: StylesConfig = {
@@ -33,12 +34,12 @@ function DropDown(props: Props){
         option: (styles, { data, isFocused, isSelected }) => {
             return {
                 ...styles,
-                color: isFocused ? main_reverse_color : main_theme_color,
-                backgroundColor: isFocused ? main_theme_color : main_reverse_color,
+                color: main_theme_color,
+                backgroundColor: isFocused ? middle_color : main_reverse_color,
 
                 ':active': {
                 ...styles[':active'],
-                backgroundColor: isFocused ? main_theme_color : main_reverse_color
+                backgroundColor: isFocused ? middle_color : main_reverse_color
                 },
             }
         },

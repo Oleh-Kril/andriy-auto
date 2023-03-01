@@ -9,6 +9,15 @@
     padding: 0.5vw 3.5vw;
     background: $middle-color;
 
+    &:hover:after{
+        transition: all 0.2s;
+
+        $shift: .4vw;
+
+        top:  $shift;
+        left:  $shift;
+    }
+
     &:after{
         $shift: .8vw;
         content: "";

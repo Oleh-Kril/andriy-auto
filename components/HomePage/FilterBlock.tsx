@@ -34,7 +34,7 @@ function FilterBlock({electricDefaultOptions, fuelDefaultOptions}: Props) {
             <section className={styles.section__button}>
                 <ButtonWithBorder
                     clickHandler={() => setOpen(isOpen => !isOpen)}
-                    text={"Фільтри"}
+                    text={"| Фільтри |"}
                 />
             </section>
 
