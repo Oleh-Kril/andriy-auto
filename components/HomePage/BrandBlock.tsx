@@ -1,4 +1,4 @@
-import {Key, useEffect, useRef, useState} from "react"
+import {Key, useContext, useEffect, useRef, useState} from "react"
 
 import styles from "../../styles/HomePage/BrandBlock.module.scss"
 import btnStyles from "../../styles/ui/ButtonWithIcon.module.scss"
@@ -8,6 +8,7 @@ import {IElectricCar} from "../../models/ElectricCar.model"
 
 import BrandOption from "./BrandOption"
 import ButtonWithIcon from "../ui/ButtonWithIcon"
+import {FilterContext} from "../../pages";
 
 type Props = {
     fuelBrands: Array<IFuelCar>,
@@ -17,6 +18,8 @@ type Props = {
 type ICar = IFuelCar | IElectricCar
 
 function BrandBlock(props: Props) {
+    const {isElectricState, setIsElectricState} = useContext(FilterContext)
+
     const doorRef = useRef(null)
     const upperDoorRef = useRef(null)
     const bottomDoorRef = useRef(null)
@@ -57,9 +60,14 @@ function BrandBlock(props: Props) {
                 button.classList.toggle(btnStyles.active)
             }
 
-            btn.value === "electric"
-                ?  setBrandOption(props.electricBrands)
-                :  setBrandOption(props.fuelBrands)
+            if(btn.value === "electric"){
+                setBrandOption(props.electricBrands)
+                setIsElectricState(true)
+            }else{
+                setBrandOption(props.fuelBrands)
+                setIsElectricState(false)
+            }
+
         }
     }
     return (

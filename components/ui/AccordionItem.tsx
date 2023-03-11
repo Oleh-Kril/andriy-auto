@@ -51,7 +51,7 @@ function AccordionItem( { className, open, children }: Props){
     return (
         <div style={{overflow: 'hidden'}}>
             <div
-                style={{ height, transition: "all 1s" }}
+                style={{ height, transition: "height 1s" }}
                 onTransitionEnd={handleTransitionEnd}
             >
                 <div ref={bodyRef} className={className}>

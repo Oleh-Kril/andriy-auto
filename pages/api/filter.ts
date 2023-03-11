@@ -1,9 +1,9 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 
 import type {NextApiRequest, NextApiResponse} from 'next'
-import connectMongo from '../../DB'
-import {ElectricCarModel, IElectricCar} from "../../models/ElectricCar.model"
-import {FuelCarModel, IFuelCar} from "../../models/FuelCar.module"
+import {IElectricCar} from "../../models/ElectricCar.model"
+import {IFuelCar} from "../../models/FuelCar.module"
+import {getCars} from "./cars"
 
 type Range = {
     min: number,
@@ -23,14 +23,6 @@ export type FilterOptions = {
     color: Array<String>,
     fuelType?: Array<String>
 
-}
-
-export async function getCars(): Promise<[electricCars: IElectricCar[], fuelCars: IFuelCar[]]> {
-    await connectMongo()
-    const electricCars = await ElectricCarModel.find({}).exec() as IElectricCar[]
-    const fuelCars = await FuelCarModel.find({}).exec() as IFuelCar[]
-
-    return [electricCars, fuelCars]
 }
 export function getInitialFilterOptions(electricCars: IElectricCar[], fuelCars: IFuelCar[])
     : [electricFilterOptions: FilterOptions, fuelFilterOptions: FilterOptions]
@@ -91,7 +83,6 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<[FilterOptions, FilterOptions]>
 ) {
-
     const {method} = req
     switch (method) {
         case 'GET':
