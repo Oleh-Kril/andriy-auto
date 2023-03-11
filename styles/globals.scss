@@ -81,6 +81,10 @@ h3 {
 body, h4{
   font-size: $main-font-size;
 
+  @include respond-dpi-2{
+    font-size: $main-font-size-dpi-2;
+  }
+
   @include respond(tab-port) {
     font-size: 3vw;
   }
@@ -88,4 +92,5 @@ body, h4{
   @include respond(phone) {
     font-size: 4vw;
   }
+
 }

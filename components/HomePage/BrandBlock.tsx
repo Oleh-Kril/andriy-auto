@@ -1,19 +1,25 @@
+import {Key, useContext, useEffect, useRef, useState} from "react"
+
 import styles from "../../styles/HomePage/BrandBlock.module.scss"
 import btnStyles from "../../styles/ui/ButtonWithIcon.module.scss"
-import {Key, useEffect, useRef, useState} from "react"
-import {IFuelCar, FuelCarModel} from "../../models/FuelCar.module"
-import {IElectricCar, ElectricCarModel} from "../../models/ElectricCar.model"
+
+import {IFuelCar} from "../../models/FuelCar.module"
+import {IElectricCar} from "../../models/ElectricCar.model"
+
 import BrandOption from "./BrandOption"
-import connectMongo from "../../DB"
-import ButtonWithIcon from "../ui/ButtonWithIcon";
+import ButtonWithIcon from "../ui/ButtonWithIcon"
+import {FilterContext} from "../../pages";
 
 type Props = {
     fuelBrands: Array<IFuelCar>,
-    electricBrands: Array<IElectricCar>
+    electricBrands: Array<IElectricCar>,
 }
+
 type ICar = IFuelCar | IElectricCar
 
 function BrandBlock(props: Props) {
+    const {isElectricState, setIsElectricState} = useContext(FilterContext)
+
     const doorRef = useRef(null)
     const upperDoorRef = useRef(null)
     const bottomDoorRef = useRef(null)
@@ -54,9 +60,14 @@ function BrandBlock(props: Props) {
                 button.classList.toggle(btnStyles.active)
             }
 
-            btn.value === "electric"
-                ?  setBrandOption(props.electricBrands)
-                :  setBrandOption(props.fuelBrands)
+            if(btn.value === "electric"){
+                setBrandOption(props.electricBrands)
+                setIsElectricState(true)
+            }else{
+                setBrandOption(props.fuelBrands)
+                setIsElectricState(false)
+            }
+
         }
     }
     return (

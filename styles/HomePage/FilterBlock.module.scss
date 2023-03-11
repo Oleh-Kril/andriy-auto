@@ -1,0 +1,75 @@
+@import "../mixins";
+@import "../variables";
+
+%section{
+    position: relative;
+    z-index: 999;
+    width: 100vw;
+}
+
+.section__button{
+    @extend %section;
+
+    @include flex-center;
+    height: 10vw;
+
+    margin: 5vh 0;
+}
+
+.section__filters{
+    @extend %section;
+
+    min-height: 85vh;
+
+    background: linear-gradient(0deg,$main-theme-color  2%, $main-reverse-color 10%);
+    color: $main-theme-color;
+    padding:0 3vw 5vh 3vw;
+
+    display: grid;
+    gap: 5vw;
+    grid-template-areas:   "range range"
+                           "drop  drop"
+                           "drop  drop";
+
+    @include respond(phone){
+            grid-template-areas:"range "
+                                "drop"
+                                "drop";
+    }
+
+    .range__container{
+        grid-area: range;
+        @include flex-center;
+        flex-wrap: wrap;
+
+        @include respond(tab-port){
+            & > div{
+                width: 50%;
+            }
+        }
+        @include respond(phone){
+            grid-area: auto;
+            & > div{
+                width: 90%;
+            }
+        }
+    }
+
+    .drop__container{
+        grid-area: drop;
+
+        display: grid;
+        align-items: center;
+
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2vw;
+
+        @include respond(tab-port){
+            grid-template-columns: repeat(2, 1fr);
+        }
+        @include respond(phone){
+            grid-template-columns: 1fr;
+            gap: 5vh;
+        }
+    }
+}

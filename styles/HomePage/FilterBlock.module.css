@@ -1,0 +1,90 @@
+/*
+
+0 - 600px:      Phone
+600 - 900px:    Tablet portrait
+900 - 1200px:   Tablet landscape
+[1200 - 1800] is where our normal styles apply
+1800px + :      Big desktop
+
+$breakpoint arguement choices:
+- phone
+- tab-port
+- tab-land
+- big-desktop
+
+1em = 16px
+
+*/
+.section__filters, .section__button {
+  position: relative;
+  z-index: 999;
+  width: 100vw;
+}
+
+.section__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 10vw;
+  margin: 5vh 0;
+}
+
+.section__filters {
+  min-height: 85vh;
+  background: linear-gradient(0deg, black 2%, white 10%);
+  color: black;
+  padding: 0 3vw 5vh 3vw;
+  display: grid;
+  gap: 5vw;
+  grid-template-areas: "range range" "drop  drop" "drop  drop";
+}
+@media only screen and (max-width: 56.25em) {
+  .section__filters {
+    background: linear-gradient(0deg, black 2%, white 5%);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section__filters {
+    grid-template-areas: "range " "drop" "drop";
+  }
+}
+.section__filters .range__container {
+  grid-area: range;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+@media only screen and (max-width: 56.25em) {
+  .section__filters .range__container > div {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section__filters .range__container {
+    grid-area: auto;
+  }
+  .section__filters .range__container > div {
+    width: 90%;
+  }
+}
+.section__filters .drop__container {
+  grid-area: drop;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2vw;
+}
+@media only screen and (max-width: 56.25em) {
+  .section__filters .drop__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media only screen and (max-width: 37.5em) {
+  .section__filters .drop__container {
+    grid-template-columns: 1fr;
+    gap: 5vh;
+  }
+}
+
+/*# sourceMappingURL=FilterBlock.module.css.map */

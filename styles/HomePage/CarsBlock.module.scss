@@ -1,0 +1,30 @@
+@import "../variables";
+@import "../mixins";
+
+.section{
+    position: relative;
+    z-index: 999;
+    display: grid;
+    gap: 8vw;
+
+    width: 100vw;
+    padding: 10vw 5vw;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    @include respond(tab-land){
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 10vw;
+        padding: 10vw;
+    }
+
+    @include respond(tab-port){
+        column-gap: 5vw;
+        padding: 10vw 5vw;
+    }
+
+    @include respond(phone){
+        grid-template-columns: 1fr;
+        padding: 10vw 15vw;
+    }
+}

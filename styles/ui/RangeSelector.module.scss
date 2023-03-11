@@ -1,0 +1,105 @@
+@import "../variables";
+@import "../mixins";
+
+.container {
+    color: $main-theme-color;
+
+    height: 20vh;
+    width: 30vw;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
+    .slider {
+        $slider-line-height: 0.5vh;
+
+        position: relative;
+        width: 60%;
+
+        & > * {
+            position: absolute;
+        }
+
+        .slider__track {
+            height: $slider-line-height;
+
+            background-color: $main-theme-color;
+            width: 100%;
+            z-index: 1;
+        }
+
+        %thumb-remove-default {
+            -webkit-appearance: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .thumb {
+            @extend %thumb-remove-default;
+
+            pointer-events: none;
+            position: absolute;
+            height: 0;
+            width: 100%;
+            outline: none;
+            z-index: 2;
+
+            @mixin thumb-btn {
+                position: relative;
+
+                background-color: $highlight-color;
+                border: none;
+                cursor: pointer;
+                pointer-events: all;
+
+                height: 1.3vw;
+                width: 0.8vw;
+                margin-top: $slider-line-height / 2;
+
+                @include respond(tab-port){
+                    height: 2.5vw;
+                    width: 1vw;
+                }
+                @include respond(phone){
+                    height: 4vw;
+                    width: 2vw;
+                }
+            }
+
+            &::-webkit-slider-thumb {
+                @extend %thumb-remove-default;
+                @include thumb-btn;
+            }
+
+            &::-moz-range-thumb {
+                @include thumb-btn;
+            }
+
+        }
+
+    }
+
+    .info {
+        width: 100%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+
+        img {
+            @include respond(phone){
+                height: 80%;
+            }
+        }
+
+        &__value {
+            border: 1px solid $main-theme-color;
+            padding: 0.5rem;
+            width: 30%;
+            text-align: center;
+
+        }
+    }
+}
+
